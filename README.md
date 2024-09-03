@@ -44,6 +44,14 @@ Install the required Python packages using pip:
 
 pip install Flask requests
 _____________________
+API Key
+
+Get an API key from OpenWeatherMap.
+
+Replace the API_KEY variable in app.py with your OpenWeatherMap API key.
+
+API_KEY = 'your_api_key_here'
+_____________________
 Run the Application
 
 Start the Flask development server:
