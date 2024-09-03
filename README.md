@@ -33,12 +33,21 @@ Installation and Setup
 
 Clone the Repository
 
-git clone https://github.com/yourusername/weather-app.git
-cd weather-app
+git clone https://github.com/Josiahericksen03/weather
+
+cd weather
+_____________________
+
 Install Dependencies
 
 Install the required Python packages using pip:
 
-bash
-Copy code
 pip install Flask requests
+_____________________
+Run the Application
+
+Start the Flask development server:
+
+python app.py
+
+The application will be available at http://127.0.0.1:5000/.
