@@ -5,7 +5,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-API_KEY = '70371699840c4120cc43d3f7e5607162'
+API_KEY = 'your_api_key_here' #using your own API key, this project works completely fine
 
 def group_forecast_by_day(forecast_list):
     grouped_forecast = defaultdict(list)
