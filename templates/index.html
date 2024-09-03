@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #333333;
+        }
+
+        form, .location-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #004c99;
+        }
+
+        #error-message {
+            color: red;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            form, .location-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather App</h1>
+    <form action="/weather" method="post">
+        <input type="text" name="city" placeholder="Enter city name" required>
+        <select name="units">
+            <option value="metric">Celsius</option>
+            <option value="imperial">Fahrenheit</option>
+        </select>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <div class="location-section">
+        <h2>Or use your current location:</h2>
+        <button onclick="getLocation()">Get Weather by Location</button>
+    </div>
+
+    <div id="error-message">
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+    </div>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            let units = document.querySelector('select[name="units"]').value;
+            window.location.href = `/weather/location?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=${units}`;
+        }
+    </script>
+</body>
+</html>
